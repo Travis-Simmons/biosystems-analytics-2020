@@ -26,7 +26,7 @@ IMPORTANT: Anytime you uninstall the app and reinstall it you will lose any data
 ### 3. Finish Installing the Ubuntu App.
 Then we need to setup your user name and password for ubuntu.
 
-- It will ask you to enter a username. This will be the root / admin user for the Ubuntu FS.
+- It will ask you to enter a username. This will be the root / admin user for the Ubuntu FS. Don't use capital letters in this name.
 
 - It will then ask you to enter and confirm a password. Also note that it will protect your password by not displaying it to the screen when you type, but it is registering your key strokes.
 
@@ -154,14 +154,24 @@ NOTE: if you get a permission error, try to run
 `sudo mount -t drvfs C: /mnt/c -o metadata`
 Then go back to the windows subsystem (cdwr command) and try to clone again.
 
+#### Set an upstream repository to get updates
+In order to get updates from the HurwitzLab copy of the repo, you must set it as an "upstream" repository.
+
+Change into your local repo checkout, e.g., `cd /biosystems-analytics-2020`
+Execute `git remote add upstream https://github.com/hurwitzlab/biosystems-analytics-2020.git`
+
 ## Install Python and PyCharm
 
 ### 1. Install Python
 To install python run the following at the WSL:
 
 `sudo apt update && upgrade` 
-
+then run:
 `sudo apt install python3 python3-pip ipython3`
+
+Let's also install a bunch of usefull python packages:
+
+`sudo apt install python3-pytest`
 
 ### 2. Install PyCharm
 Note: you can only use and invoke PyCharm for the files in the Windows filesystem (also accessible form the WSL at /mnt/c/Users/<user-name>).
