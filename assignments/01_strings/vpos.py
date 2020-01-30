@@ -26,35 +26,8 @@ def get_args():
     parser.add_argument('text',
                         metavar='text',
                         help='The text to search')
-    """
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
-                        metavar='str',
-                        type=str,
-                        default='')
-
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('r'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
-    """
+    
     return parser.parse_args()
-
 
 # --------------------------------------------------
 def main():
@@ -64,15 +37,7 @@ def main():
     vowel = args.vowel
     text = args.text 
     vowels = "aeiou"
-    """
-    for char in text:
-        if char in vowels:
-            position = text.find(vowel)
-            print(f'Found "{vowel}" in "{text}" at index {position}.')
-        else:
-            print(f'"{vowel}" is not found in "{text}".')
     
-    """
     if vowel.casefold() in text.casefold() and vowels: 
         index = text.find(vowel)
         print(f'Found "{vowel}" in "{text}" at index {index}.')
