@@ -25,7 +25,6 @@ def get_args():
     
     parser.add_argument('-s',
                         '--sep',
-                        #action='store_false',
                         help='A separator',
                         default=', ')
     
