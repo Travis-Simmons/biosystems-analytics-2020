@@ -2,7 +2,7 @@
 """
 Author : Emmanuel Gonzalez
 Date   : 2020-02-11
-Purpose: Print out favorite things. 
+Purpose: Print out my favorite things. 
 """
 
 import argparse
@@ -32,7 +32,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Print my favorite things here"""
 
     args = get_args()
     favs = args.favorites
