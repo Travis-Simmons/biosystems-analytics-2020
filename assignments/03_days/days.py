@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-02-16
 Purpose: Seven Days of the Week
 """
