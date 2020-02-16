@@ -6,11 +6,10 @@ Purpose: Seven Days of the Week
 """
 
 import argparse
-import os
-import sys
-
 
 # --------------------------------------------------
+
+
 def get_args():
     """Get command-line arguments"""
 
@@ -28,18 +27,15 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Check list for days and return string"""
 
     args = get_args()
     days = args.days
-
-    #null = f'Can\'t find "{days}"'
 
     day_do = {'Monday': 'On Mondays I never go to work', 'Tuesday': 'On Tuesdays I stay at home', 'Wednesday': 'On Wednesdays I never feel inclined',
               'Thursday': 'On Thursdays, it\'s a holiday', 'Friday': 'And Fridays I detest', 'Saturday': 'Oh, it\'s much too late on a Saturday', 'Sunday': 'And Sunday is the day of rest'}
 
     for day in days:
-        # print(day)
         null = f'Can\'t find "{day}"'
         print(day_do.get(day, null))
 
