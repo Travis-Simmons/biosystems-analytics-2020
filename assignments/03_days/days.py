@@ -27,7 +27,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Check list for days and return string of what to do each day"""
+    """Check list for day/s and return string of what to do each day"""
 
     args = get_args()
     days = args.days
