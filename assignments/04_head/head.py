@@ -59,8 +59,6 @@ def main():
             line = line.strip()
             if count in lines_wanted:
                 print(line)
-            else:
-                pass
             count += 1
 
 
