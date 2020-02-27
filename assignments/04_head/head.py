@@ -26,17 +26,13 @@ def get_args():
 
     parser.add_argument('file',
                         metavar='FILE',
-                        # default=[sys.stdin],
-                        # type=argparse.FileType('r'),
                         help='Input file')
 
     parser.add_argument('-n',
                         '--num',
                         help='Number of lines (default: 10)',
                         metavar='int',
-                        #default=parser.error(f'--num "{args.num}" must be greater than 0'),
                         type=int,
-                        #choices=range(0, 10),
                         default=10)
 
     args = parser.parse_args()
