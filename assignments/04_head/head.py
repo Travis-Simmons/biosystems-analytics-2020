@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-02-26
-Purpose: Rock the Casbah
+Purpose:
 """
 
 import argparse
@@ -52,9 +52,6 @@ def main():
 
     args = get_args()
     with open(args.file) as f:
-        #lines = f.readlines()[args.num]
-        # print(lines)
-
         count = 0
         lines_wanted = range(0, args.num)
 
