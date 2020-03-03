@@ -2,7 +2,7 @@
 """
 Author : Emmanuel Gonzalez
 Date   : 2020-02-28
-Purpose: Calcualte the Hamming distance between two string of equal of different lengths.
+Purpose: Calcualte the Hamming distance between two string of equal or different lengths.
 """
 
 import argparse
