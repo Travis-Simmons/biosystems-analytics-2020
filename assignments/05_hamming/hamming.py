@@ -34,7 +34,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Find differences between two words or two DNA strands"""
 
     args = get_args()
 
