@@ -41,9 +41,7 @@ def main():
     with open(args.file) as f:
         for line in f:
             line = line.strip()
-            words = line.split()
-            word1 = words[0]
-            word2 = words[1]
+            word1, word2 = line.split()
 
             if len(word1) == len(word2):
                 diffs = 0
