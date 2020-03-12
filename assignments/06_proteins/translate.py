@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-03-12
-Purpose: Rock the Casbah
+Purpose: Translate DNA/RNA into proteins
 """
 
 import argparse
@@ -11,6 +11,8 @@ import sys
 from pprint import pprint
 
 # --------------------------------------------------
+
+
 def get_args():
     """Get command-line arguments"""
 
@@ -48,27 +50,25 @@ def main():
     outfile = args.outfile.name
     aa = args.codons
     k = 3
-    
+
     codon_amino = {}
     for line in args.codons:
         lines = line.split()
         for l in lines:
             seq = lines[0]
             aa = lines[1]
-            codon_amino[seq] = aa 
+            codon_amino[seq] = aa
 
     codon_list = []
     for codon in [args.seq[i:i + k] for i in range(0, len(args.seq) - k + 1)]:
         codon_list.append(codon.upper())
     codon_list = codon_list[::3]
 
-    amino_list = []
     for c in codon_list:
         amino = codon_amino.get(c, '-')
-        amino_list.append(amino)
         args.outfile.write(amino)
-    
-    print(f'Output written to "{outfile}".') 
+
+    print(f'Output written to "{outfile}".')
 
 
 # --------------------------------------------------
