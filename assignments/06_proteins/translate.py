@@ -6,9 +6,6 @@ Purpose: Translate DNA/RNA into proteins
 """
 
 import argparse
-import os
-import sys
-from pprint import pprint
 
 # --------------------------------------------------
 
@@ -48,24 +45,22 @@ def main():
 
     args = get_args()
     outfile = args.outfile.name
-    aa = args.codons
     k = 3
 
     codon_amino = {}
-    for line in args.codons:
-        lines = line.split()
-        for l in lines:
-            seq = lines[0]
-            aa = lines[1]
-            codon_amino[seq] = aa
+    for row in args.codons:
+        lines = row.split()
+        seq = lines[0]
+        amino_acid = lines[1]
+        codon_amino[seq] = amino_acid
 
     codon_list = []
     for codon in [args.seq[i:i + k] for i in range(0, len(args.seq) - k + 1)]:
         codon_list.append(codon.upper())
     codon_list = codon_list[::3]
 
-    for c in codon_list:
-        amino = codon_amino.get(c, '-')
+    for codon in codon_list:
+        amino = codon_amino.get(codon, '-')
         args.outfile.write(amino)
 
     print(f'Output written to "{outfile}".')
