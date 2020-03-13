@@ -41,7 +41,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Translate DNA/RNA > protein here"""
 
     args = get_args()
     outfile = args.outfile.name
