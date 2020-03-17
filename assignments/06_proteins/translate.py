@@ -55,9 +55,8 @@ def main():
         codon_amino[seq] = amino_acid
 
     codon_list = []
-    for codon in [args.seq[i:i + k] for i in range(0, len(args.seq) - k + 1)]:
+    for codon in [args.seq[i:i + k] for i in range(0, len(args.seq) - k + 1, k)]:
         codon_list.append(codon.upper())
-    codon_list = codon_list[::3]
 
     for codon in codon_list:
         amino = codon_amino.get(codon, '-')
