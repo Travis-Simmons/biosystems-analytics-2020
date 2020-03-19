@@ -33,7 +33,7 @@ def get_args():
                         '--outfile',
                         help='Output filename',
                         metavar='FILE',
-                        type=argparse.FileType('w'),
+                        type=argparse.FileType('wt'),
                         default="out.txt")
 
     return parser.parse_args()
@@ -49,9 +49,9 @@ def main():
 
     codon_amino = {}
     for row in args.codons:
-        lines = row.split()
-        seq = lines[0]
-        amino_acid = lines[1]
+        column = row.split()
+        seq = column[0]
+        amino_acid = column[1]
         codon_amino[seq] = amino_acid
 
     codon_list = []
