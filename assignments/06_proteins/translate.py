@@ -44,7 +44,6 @@ def main():
     """Translate DNA/RNA > protein here"""
 
     args = get_args()
-    outfile = args.outfile.name
     k = 3
 
     codon_amino = {}
@@ -62,7 +61,7 @@ def main():
         amino = codon_amino.get(codon, '-')
         args.outfile.write(amino)
 
-    print(f'Output written to "{outfile}".')
+    print(f'Output written to "{args.outfile.name}".')
 
 
 # --------------------------------------------------
