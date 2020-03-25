@@ -14,7 +14,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Transcribe',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('file',
@@ -47,17 +47,14 @@ def main():
         name = f.name
         out_file = os.path.join(args.outdir, os.path.basename(name))
         out_fh = open(out_file, 'wt')
-        replace = 'T'
         for row in f:
-            seqs = row.split()[:]
+            seqs = row.split()
             trans = []
             for seq in seqs:
                 s_cnt += 1
                 for ch in seq:
-                    if ch in replace:
-                        trans.append('U')
-                    else:
-                        trans.append(ch)
+                    replace = 'T'
+                    trans.append('U') if ch in replace else trans.append(ch)
                 trans_seq = ''.join(trans)
             out_fh.write(trans_seq + '\n')
 
