@@ -45,7 +45,7 @@ def main():
 
     args = get_args()
     k = 3
-
+    
     codon_amino = {}
     for row in args.codons:
         column = row.split()
