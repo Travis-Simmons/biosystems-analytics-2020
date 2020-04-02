@@ -96,19 +96,16 @@ def main():
     args = get_args()
     random.seed(args.seed)
     pool = create_pool(args.pctgc, args.maxlen, args.seqtype)
-
-    #print("Pool:", pool)
-    #print("Type: ", type(pool))
-
+    
+    seqs = 0
     for _ in range(args.numseqs):
+        seqs += 1
         seq_len = random.randint(args.minlen, args.maxlen)
         seq = random.sample(pool, seq_len)
-        print(seq_len)
-        print(seq)
         sep = "\n"
-        args.outfile.write(''.join(seq) + "\n")
+        args.outfile.write(f'>{seqs}' + "\n" + ''.join(seq) + "\n")
 
-    print(f'Done, wrote {args.numseqs} DNA {"sequence" if args.numseqs == 1 else "sequences"} to "{args.outfile.name}".')
+    print(f'Done, wrote {args.numseqs} {args.seqtype.upper()} {"sequence" if args.numseqs == 1 else "sequences"} to "{args.outfile.name}".')
 
 
 
