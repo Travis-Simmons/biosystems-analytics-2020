@@ -102,7 +102,6 @@ def main():
         seqs += 1
         seq_len = random.randint(args.minlen, args.maxlen)
         seq = random.sample(pool, seq_len)
-        sep = "\n"
         args.outfile.write(f'>{seqs}' + "\n" + ''.join(seq) + "\n")
 
     print(f'Done, wrote {args.numseqs} {args.seqtype.upper()} {"sequence" if args.numseqs == 1 else "sequences"} to "{args.outfile.name}".')
