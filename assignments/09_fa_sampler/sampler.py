@@ -8,7 +8,6 @@ Purpose: Probabilistically sample one or more input FASTA files
 
 import argparse
 import os
-import sys
 import random
 from Bio import SeqIO
 
@@ -59,6 +58,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
+    """ Sample here """
     args = get_args()
     random.seed(args.seed)
 
