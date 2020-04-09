@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-04-08
-Purpose: Rock the Casbah
+Purpose: Probabilistically sample one or more input FASTA files
+        into an output directory.
 """
 
 import argparse
@@ -12,6 +13,8 @@ import random
 from Bio import SeqIO
 
 # --------------------------------------------------
+
+
 def get_args():
     """Get command-line arguments"""
 
@@ -51,8 +54,6 @@ def get_args():
     if not 0 <= args.pct < 1:
         parser.error(f'--pct "{args.pct}" must be between 0 and 1')
 
-    #if os.path.isfile(args.file):
-    #    args.file = open(args.file).read().rstrip()
     return args
 
 
@@ -60,10 +61,6 @@ def get_args():
 def main():
     args = get_args()
     random.seed(args.seed)
-
-    #text = args.file.rstrip()
-    #text_len = len(args.file)
-    #num_seq = round( text_len * args.pct)
 
     if not os.path.isdir(args.outdir):
         os.makedirs(args.outdir)
@@ -82,11 +79,8 @@ def main():
                 seq_cnt += 1
                 SeqIO.write(rec, out_fh, 'fasta')
         out_fh.close()
-    #print(seq_cnt)
 
     print(f'Wrote {seq_cnt:,} sequences from {cnt} {"file" if cnt == 1 else "files"} to directory "{args.outdir}"')
-
-
 
 
 # --------------------------------------------------
