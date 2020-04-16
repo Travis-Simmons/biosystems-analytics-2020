@@ -6,12 +6,8 @@ Purpose: Find Unclustered Proteins
 """
 
 import argparse
-import os
-import sys
 import re
 from Bio import SeqIO
-from collections import namedtuple
-from typing import NamedTuple
 
 
 # --------------------------------------------------
@@ -55,22 +51,19 @@ def main():
     protein_ids = set()
 
     for line in args.cdhit:
-        if line[0] == '>':
-            continue
-        else:
+
+        if line[0] != '>':
             match = re.search(r'>(\d+)', line)
 
-            if match != None:
-                id = match.group(1)
-                protein_ids.add(id)
-                #print(protein_ids)
-            else:
-                continue
+            if match is not None:
+                iden = match.group(1)
+                protein_ids.add(iden)
 
     num_seq, num_write = 0, 0
     for rec in SeqIO.parse(args.proteins, 'fasta'):
         prot_id = re.sub(r'\|.*', '', rec.id)
         num_seq += 1
+
         if prot_id not in protein_ids:
             num_write += 1
             SeqIO.write(rec, args.outfile, 'fasta')
