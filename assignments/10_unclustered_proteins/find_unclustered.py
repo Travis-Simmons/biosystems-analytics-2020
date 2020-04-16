@@ -45,7 +45,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Find unclustered proteins and write to FASTA file"""
 
     args = get_args()
     protein_ids = set()
