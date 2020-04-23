@@ -3,4 +3,7 @@ High-throughput phenotyping has become quite popular in recent years. Various se
 
 ## Running the program 
 * First, install dependencies by running the following command: `./depend.sh`
-* 
+
+* You're now ready to go! Just run the following: `./edit_gps.py <image directory> -c <CSV file path>`
+
+* The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
