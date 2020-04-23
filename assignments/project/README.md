@@ -8,6 +8,8 @@ High-throughput phenotyping, the use of various sensors to collect plant phenoty
 ```
 
 * You're now ready to go! To run the script, just run:
-> `./edit_gps.py <image directory> -c <CSV file path>`
+```
+./edit_gps.py <image directory> -c <CSV file path>
+```
 
 * The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
