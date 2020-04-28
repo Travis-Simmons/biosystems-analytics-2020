@@ -1,14 +1,16 @@
-# GIS_tools
-A collection of python scripts for various GIS tasks. These scripts were developed for data processing for the world's largest phenotyping platform at the University of Arizona's Maricopa Agricultural Center. To run the following scripts, install all dependencies by running: `./depend.sh`
+# TIFF metadata tool (TMT) 
+High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. Often, the images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to load a set of TIFF images that need to be corrected and a CSV file that contains image filenames and bounding coordinates (upper left, lower left, upper right, lower right, and center). The script will open each image using GDAL, replace current coordinates, and output a new image file with updated coordinates. 
 
-## Collecting all bounding GPS coordinates into a CSV file
-The script `img_coords_b2t_up.py` collects all corner coordinates (upper left, lower left, etc.). It generates a CSV file with filename and all coordinates. Just feed it the directory where your files are located.  
+## Running the program 
 
-## Editing GPS coordinates of TIF images
-The script `edit_gps.py` edits the corner coordinates within your TIF file. Just feed it the directory where your files are located and a CSV file with your coordinates which must contain the headers: Filename, Upper left, Lower right.
+1. install dependencies by running the following command: 
+```
+./depend.sh
+```
 
-## Adding GPS coordinates to EXIF metadata
-The script `add_exif_tif.py` adds EXIF metadata to TIF files. Just feed it the directory where your files are located. 
+2. You're now ready to go! To run the script, just run:
+```
+./edit_gps.py <image directory> -c <CSV file path>
+```
 
-## Stitching images into plots 
-The script `stitch_all_plots.py` stitches images that are split into plot subdirectories. It places the stitched image into the corresponding plot subdirectory. This script is used after AgPipeline's plotclip extractor. 
+> The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
