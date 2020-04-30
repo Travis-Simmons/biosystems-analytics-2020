@@ -54,14 +54,13 @@ def main():
 
     args = get_args()
     keyword_args = set(args.keyword.split('""'))
+    skip = set(map(str.lower, (args.skiptaxa)))
 
     skip_cnt, take_cnt = 0, 0
 
     for rec in SeqIO.parse(args.file, "swiss"):
         taxa = set(map(str.lower, (rec.annotations.get('taxonomy'))))
         key = set(map(str.lower, (rec.annotations.get('keywords'))))
-
-        skip = set(map(str.lower, (args.skiptaxa)))
 
         if skip.intersection(taxa):
             skip_cnt += 1
