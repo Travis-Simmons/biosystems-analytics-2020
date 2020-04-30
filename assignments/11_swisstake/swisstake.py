@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-04-29
-Purpose: Rock the Casbah
+Purpose: Parse SwissProt records
 """
 
 import argparse
