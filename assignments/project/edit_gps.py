@@ -68,7 +68,6 @@ def main():
             u_l_long, u_l_lat = u_l.split(',')
             l_r = df.loc[[str(filename)][0], ['Lower right'][0]]
             l_r_long, l_r_lat = l_r.split(',')
-            #print(f'Upper left: {u_l_lat} {u_l_long} "\n" Lower right: {l_r_lat} {l_r_long}')
             print(f'>{num:5} {filename}')
 
             basename = os.path.splitext(os.path.basename(i))[0]
@@ -84,7 +83,7 @@ def main():
 
     end = time.time()
     total_time = end - start
-    print(f'Done, process took {total_time}. Outputs saved in {args.outdir}.')
+    print(f'Process complete, it took {total_time}. Outputs in {args.outdir}.')
 
 
 # --------------------------------------------------
