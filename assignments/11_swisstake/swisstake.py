@@ -6,8 +6,6 @@ Purpose: Rock the Casbah
 """
 
 import argparse
-import os
-import sys
 from Bio import SeqIO
 
 
@@ -38,7 +36,7 @@ def get_args():
                         help='Taxa to skip',
                         metavar='taxa',
                         type=str,
-                        default=None)
+                        default=' ')
 
     parser.add_argument('-o',
                         '--outfile',
@@ -50,37 +48,33 @@ def get_args():
     return parser.parse_args()
 
 
-
-
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
-
     keyword_args = set(args.keyword.split('""'))
-    #print(keyword_args)
-    s, t = 0, 0
+
+    skip_cnt, take_cnt = 0, 0
 
     for rec in SeqIO.parse(args.file, "swiss"):
-        taxa = set(map(str.lower,(rec.annotations.get('taxonomy'))))
-        key = set(map(str.lower,(rec.annotations.get('keywords'))))
+        taxa = set(map(str.lower, (rec.annotations.get('taxonomy'))))
+        key = set(map(str.lower, (rec.annotations.get('keywords'))))
 
-        skip = set(map(str.lower,(args.skiptaxa)))
+        skip = set(map(str.lower, (args.skiptaxa)))
 
         if skip.intersection(taxa):
-            s += 1
-            pass
+            skip_cnt += 1
 
         else:
             if keyword_args.intersection(key):
                 SeqIO.write(rec, args.outfile, 'fasta')
-                t += 1
+                take_cnt += 1
             else:
-                s += 1
-                continue
+                skip_cnt += 1
 
-    print(f'Done, skipped {s} and took {t}. See output in "{args.outfile.name}".')
+    print(
+        f'Done, skipped {skip_cnt} and took {take_cnt}. See output in "{args.outfile.name}".')
 
 
 # --------------------------------------------------
