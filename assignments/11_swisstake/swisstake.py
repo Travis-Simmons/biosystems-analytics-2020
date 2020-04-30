@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""
+Author : emmanuelgonzalez
+Date   : 2020-04-29
+Purpose: Rock the Casbah
+"""
+
+import argparse
+import os
+import sys
+from Bio import SeqIO
+
+
+# --------------------------------------------------
+def get_args():
+    """Get command-line arguments"""
+
+    parser = argparse.ArgumentParser(
+        description='Filter SwissProt file for keywords, taxa',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument('file',
+                        metavar='FILE',
+                        type=argparse.FileType('r'),
+                        help='SwissProt file')
+
+    parser.add_argument('-k',
+                        '--keyword',
+                        help='Keyword to take',
+                        metavar='keyword',
+                        type=str,
+                        required=True,
+                        default=None)
+
+    parser.add_argument('-s',
+                        '--skiptaxa',
+                        nargs='+',
+                        help='Taxa to skip',
+                        metavar='taxa',
+                        type=str,
+                        default=None)
+
+    parser.add_argument('-o',
+                        '--outfile',
+                        help='Output filename',
+                        metavar='FILE',
+                        type=argparse.FileType('wt'),
+                        default='out.fa')
+
+    return parser.parse_args()
+
+
+
+
+# --------------------------------------------------
+def main():
+    """Make a jazz noise here"""
+
+    args = get_args()
+
+    keyword_args = set(args.keyword.split('""'))
+    #print(keyword_args)
+    s, t = 0, 0
+
+    for rec in SeqIO.parse(args.file, "swiss"):
+        taxa = set(map(str.lower,(rec.annotations.get('taxonomy'))))
+        key = set(map(str.lower,(rec.annotations.get('keywords'))))
+
+        skip = set(map(str.lower,(args.skiptaxa)))
+
+        if skip.intersection(taxa):
+            s += 1
+            pass
+
+        else:
+            if keyword_args.intersection(key):
+                SeqIO.write(rec, args.outfile, 'fasta')
+                t += 1
+            else:
+                s += 1
+                continue
+
+    print(f'Done, skipped {s} and took {t}. See output in "{args.outfile.name}".')
+
+
+# --------------------------------------------------
+if __name__ == '__main__':
+    main()
