@@ -1,5 +1,5 @@
 # TIFF metadata tool (TMT) 
-High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. Often,  images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to load a set of TIFF images that need to be corrected and a CSV file that contains image filenames and bounding coordinates (upper left, lower left, upper right, lower right, and center). The script will open each image using GDAL, replace current coordinates using those on the CSV, and output a new image file with updated coordinates. 
+High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. However, the images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to correct corner coordinates of TIFF images. A CSV file that contains image filenames and bounding coordinates must be provided (see CSV format below). The script will open and read each image using GDAL, replace current coordinates with those in the CSV file, and output a new image file with updated coordinates. 
 
 ## CSV format 
 
