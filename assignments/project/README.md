@@ -30,7 +30,7 @@ image_left.tif|-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0
 ./edit_gps.py <image directory> -c <CSV file path>
 ```
 
->> Note: The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
+> Note: The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
 
 ## Output image
 
