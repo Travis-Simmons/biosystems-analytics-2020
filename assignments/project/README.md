@@ -23,3 +23,7 @@ image_left.tif|-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0
 
 > The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
 
+## Output image
+
+![Example](example.png)
+
