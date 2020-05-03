@@ -1,17 +1,26 @@
-# TIFF metadata tool (TMT) 
-High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. However, the images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to correct corner coordinates of TIFF images. A CSV file that contains image filenames and bounding coordinates must be provided (see CSV format below). The script will open and read each image using GDAL, replace current coordinates with those in the CSV file, and output a new image file with updated coordinates. 
+# TIFF metadata tool (TMT)
+High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. However, the images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to correct corner coordinates of TIFF images. A CSV file that contains image filenames and bounding coordinates must be provided (see CSV format below). The script will open and read each image using GDAL, replace current coordinates with those in the CSV file, and output a new image file with updated coordinates.
 
-## CSV format 
+## CSV format
 
 The CSV file must be in the following format:
 
-|Filename  |Upper left |Lower left |Upper right |Lower right |Center 
+|Filename  |Upper left |Lower left |Upper right |Lower right |Center
 --- | --- | --- | --- | --- | --- |
 image_left.tif|-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0745881|-111.9750445,33.0745781|-111.9750489,33.0745831
 
+## Usage
+
+1. A directory containing TIF images (required)
+
+2. `-c/--csv` CSV file containing updated GPS coordinates (required)
+
+3. `-o/--outdir` Directory where images will be saved (optional)
+
+
 ## Running the program
 
-1. Install dependencies by running the following command: 
+1. Install dependencies by running the following command:
 ```
 ./depend.sh
 ```
