@@ -60,7 +60,8 @@ def main():
 
     images = glob.glob(args.dir + "*.tif", recursive=True)
 
-    df = pd.read_csv(args.csv, index_col='Filename', usecols=['Filename', 'Upper left', 'Lower right'])
+    df = pd.read_csv(args.csv, index_col='Filename', \
+        usecols=['Filename', 'Upper left', 'Lower right'])
 
     for i in images:
         filename = ''.join(os.path.splitext(os.path.basename(i)))
@@ -77,8 +78,8 @@ def main():
 
             basename = os.path.splitext(os.path.basename(i))[0]
             outfile = args.outdir + '/' + basename + '_corrected.tif'
-            cmd = (
-                f'gdal_translate -of "GTiff" -co "COMPRESS=LZW" -a_ullr {u_l_long} {u_l_lat} {l_r_long} {l_r_lat} -a_srs EPSG:4326 {i} {outfile}')
+            cmd = f'gdal_translate -of "GTiff" -co "COMPRESS=LZW" -a_ullr \
+                {u_l_long} {u_l_lat} {l_r_long} {l_r_lat} -a_srs EPSG:4326 {i} {outfile}'
             subprocess.call(cmd, shell=True)
 
             end = time.time()
