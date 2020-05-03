@@ -4,9 +4,9 @@ High-throughput phenotyping, the use of various sensors to collect plant phenoty
 ## CSV format 
 The CSV file must be in the following format:
 
-|Filename  |Upper left |Lower left |Upper right |Lower right |Center |
+|Filename  |Upper left |Lower left |Upper right |Lower right |Center 
 --- | --- | --- | --- | --- | --- |
--111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0745881|-111.9750445,33.0745781|-111.9750489,33.0745831 |
+-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0745881|-111.9750445,33.0745781|-111.9750489,33.0745831
 
 ## Running the program
 
