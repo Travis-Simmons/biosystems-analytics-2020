@@ -25,5 +25,7 @@ image_left.tif|-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0
 
 ## Output image
 
-![Example](example.png) width = 100
+<p align="center">
+  <img src="example.png" width="350" title="Output image">
+</p>
 
