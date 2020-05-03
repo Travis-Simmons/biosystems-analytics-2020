@@ -10,10 +10,7 @@ import os
 import subprocess
 import glob
 import time
-from osgeo import gdal
 import pandas as pd
-
-start = time.time()
 
 # --------------------------------------------------
 
@@ -63,37 +60,35 @@ def main():
 
     images = glob.glob(args.dir + "*.tif", recursive=True)
 
-    df = pd.read_csv(args.csv, index_col='Filename', usecols=[
-                     'Filename', 'Upper left', 'Lower right'])
+    df = pd.read_csv(args.csv, index_col='Filename', usecols=['Filename', 'Upper left', 'Lower right'])
 
-    num = 0
     for i in images:
         filename = ''.join(os.path.splitext(os.path.basename(i)))
 
         if filename in df.index:
             img_cnt += 1
-            start2 = time.time()
-            num += 1
+            start = time.time()
+
             u_l = df.loc[[str(filename)][0], ['Upper left'][0]]
             u_l_long, u_l_lat = u_l.split(',')
             l_r = df.loc[[str(filename)][0], ['Lower right'][0]]
             l_r_long, l_r_lat = l_r.split(',')
-            print(f'>{num:5} {filename}')
+            print(f'>{img_cnt} {filename:5}')
 
             basename = os.path.splitext(os.path.basename(i))[0]
             outfile = args.outdir + '/' + basename + '_corrected.tif'
-            cmd = f'gdal_translate -of "GTiff" -co "COMPRESS=LZW" -a_ullr {u_l_long} {u_l_lat} {l_r_long} {l_r_lat} -a_srs EPSG:4326 {i} {outfile}'
+            cmd = (
+                f'gdal_translate -of "GTiff" -co "COMPRESS=LZW" -a_ullr {u_l_long} {u_l_lat} {l_r_long} {l_r_lat} -a_srs EPSG:4326 {i} {outfile}')
             subprocess.call(cmd, shell=True)
 
-            end2 = time.time()
-            ind_time = end2 - start2
+            end = time.time()
+            ind_time = end - start
             print(f'Done - Processing time: {ind_time}' + "\n")
         else:
             continue
 
-    #end = time.time()
-    #total_time = end - start
-    print(f'Process complete, edited {img_cnt} images. Outputs in "{args.outdir}".')
+    print(
+        f'Process complete, edited {img_cnt} images. Outputs in "{args.outdir}".')
 
 
 # --------------------------------------------------
