@@ -16,6 +16,8 @@ import pandas as pd
 start = time.time()
 
 # --------------------------------------------------
+
+
 def get_args():
     """Get command-line arguments"""
 
@@ -41,7 +43,12 @@ def get_args():
                         type=str,
                         default='gpscorrect_out')
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if not os.path.isdir(args.dir):
+        parser.error(f"No such file or directory: '{args.dir}'")
+
+    return args
 
 
 # --------------------------------------------------
@@ -49,19 +56,22 @@ def main():
     """Open CSV and update coordinates"""
 
     args = get_args()
+    img_cnt = 0
 
     if not os.path.isdir(args.outdir):
         os.makedirs(args.outdir)
 
     images = glob.glob(args.dir + "*.tif", recursive=True)
 
-    df = pd.read_csv(args.csv, index_col='Filename', usecols=['Filename', 'Upper left', 'Lower right'])
+    df = pd.read_csv(args.csv, index_col='Filename', usecols=[
+                     'Filename', 'Upper left', 'Lower right'])
 
     num = 0
     for i in images:
         filename = ''.join(os.path.splitext(os.path.basename(i)))
 
         if filename in df.index:
+            img_cnt += 1
             start2 = time.time()
             num += 1
             u_l = df.loc[[str(filename)][0], ['Upper left'][0]]
@@ -81,9 +91,9 @@ def main():
         else:
             continue
 
-    end = time.time()
-    total_time = end - start
-    print(f'Process complete, it took {total_time}. Outputs in {args.outdir}.')
+    #end = time.time()
+    #total_time = end - start
+    print(f'Process complete, edited {img_cnt} images. Outputs in "{args.outdir}".')
 
 
 # --------------------------------------------------
