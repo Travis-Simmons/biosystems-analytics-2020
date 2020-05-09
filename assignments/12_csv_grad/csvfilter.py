@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Author : emmanuelgonzalez
+Author : Emmanuel Gonzalez
 Date   : 2020-05-07
-Purpose: Rock the Casbah
+Purpose: Filter a delimited text file for some value
 """
 
 import argparse
-import os
 import sys
 import csv
 import re
@@ -17,7 +16,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='CSV filter',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('-f',
@@ -60,12 +59,6 @@ def get_args():
 
     return parser.parse_args()
 
-    # if args.col:
-    #     if args.col not in args.file:
-    #         parser.error(f'--col "{args.col}" not a valid column!')
-
-    # return args
-
 
 # --------------------------------------------------
 def main():
@@ -84,10 +77,10 @@ def main():
 
         if args.col not in reader.fieldnames:
             options = ', '.join(reader.fieldnames)
-            sys.stderr.write(f'--col "{args.col}" not a valid column!\nChoose from {options}\n')
+            sys.stderr.write(
+                f'--col "{args.col}" not a valid column!\nChoose from {options}\n')
 
     writer = csv.DictWriter(args.outfile, fieldnames=reader.fieldnames)
-    head = reader.fieldnames
     writer.writeheader()
 
     for rec in reader:
@@ -103,10 +96,11 @@ def main():
         else:
 
             if re.search(args.val, str(rec.values()), re.IGNORECASE):
-                    cnt_val += 1
-                    writer.writerow(rec)
+                cnt_val += 1
+                writer.writerow(rec)
 
-    print(f'Done, wrote {cnt_col if args.col else cnt_val} to "{args.outfile.name}".')
+    print(
+        f'Done, wrote {cnt_col if args.col else cnt_val} to "{args.outfile.name}".')
 
 
 # --------------------------------------------------
