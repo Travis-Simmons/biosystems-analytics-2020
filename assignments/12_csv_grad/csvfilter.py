@@ -62,7 +62,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Filter and write CSV/TSV file here"""
 
     args = get_args()
 
