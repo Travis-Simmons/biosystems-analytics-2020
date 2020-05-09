@@ -1,5 +1,5 @@
 # TIFF metadata tool (TMT)
-High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. However, the images collected may not have the correct GPS coordinates due to slight sensor movement. TMT allows you to correct corner coordinates of TIFF images. A CSV file that contains image filenames and bounding coordinates must be provided (see CSV format below). The script will open and read each image using GDAL, replace current coordinates with those in the CSV file, and output a new image file with updated coordinates.
+High-throughput phenotyping, the use of various sensors to collect plant phenotypic data, has become quite popular in recent years. It allows scientists to collect phenotypic information in a faster, cheaper manner. However, the images collected may not have the correct GPS coordinates due to slight sensor movement. This creates a significant amount of error when trying to stitch these images together. TMT allows you to correct corner coordinates of TIFF images so that they align correctly. A CSV file that contains image filenames and bounding coordinates must be provided (see CSV format below). The script will open and read each image using GDAL, replace current coordinates with those listed in the CSV file, and output a new image file with updated coordinates.
 
 ## CSV format
 
@@ -25,16 +25,16 @@ image_left.tif|-111.9750534,33.0745881|-111.9750534,33.0745781|-111.9750445,33.0
 ./depend.sh
 ```
 
-2. You're ready to go! Run the command:
+2. You're ready to go! Run the command to correct the images:
 ```
 ./edit_gps.py <image directory> -c <CSV file path>
 ```
 
-> Note: The default output directory is `gpscorrect_out/` but you can specify a directory by using the following flag: `-o <output directory>`
+> Note: The default output directory is `gpscorrect_out/`.
 
-## Output image
+## Output images
 
-The corner coordinates of the ouput images will be changed to those listed on the CSV file. You can then visualize your images on QGIS, and you will see that the geographic placement of the images has changed.
+The corner coordinates of the ouput images will be changed to those listed on the CSV file. You can then visualize your images on QGIS or ArcGIS, and you will see that the geographic placement of the images has changed.
 <p align="center">
   <img src="example.png" width="350" title="Output image">
 </p>
